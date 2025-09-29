@@ -3,61 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Счетчик</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: gray; /* начальный фон */
-      font-family: Arial, sans-serif;
-      transition: background-color 0.3s;
-    }
-
-    .container {
-      text-align: center;
-    }
-
-    #counter {
-      font-size: 60px;
-      font-weight: bold;
-      color: black; /* начальный цвет цифр */
-      margin-bottom: 30px;
-      transition: color 0.3s;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      opacity: 0.8;
-    }
-
-    #plus {
-      background-color: lightgreen;
-    }
-
-    #minus {
-      background-color: lightcoral;
-    }
-
-    #reset {
-      background-color: lightgray;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
   <div class="container">
@@ -69,59 +15,6 @@
     </div>
   </div>
 
-  <script>
-    const counter = document.getElementById('counter');
-    const plusBtn = document.getElementById('plus');
-    const minusBtn = document.getElementById('minus');
-    const resetBtn = document.getElementById('reset');
-    const body = document.body;
-
-    let seconds = 0;
-    let timer = null;
-    let speed = 1000; // скорость (1 секунда по умолчанию)
-
-    function updateCounter() {
-      let min = String(Math.floor(seconds / 60)).padStart(2, '0');
-      let sec = String(seconds % 60).padStart(2, '0');
-      counter.textContent = `${min}:${sec}`;
-    }
-
-    function startTimer() {
-      if (timer) clearInterval(timer);
-      timer = setInterval(() => {
-        seconds++;
-        updateCounter();
-      }, speed);
-    }
-
-    // speed +
-    plusBtn.addEventListener('click', () => {
-      body.style.backgroundColor = 'lightgreen';
-      counter.style.color = 'lightcoral'; // цифры светло-красные
-      speed = 500; // быстрее
-      startTimer();
-    });
-
-    // speed -
-    minusBtn.addEventListener('click', () => {
-      body.style.backgroundColor = 'lightcoral';
-      counter.style.color = 'lightgreen'; // цифры светло-зеленые
-      speed = 2000; // медленнее
-      startTimer();
-    });
-
-    // reset
-    resetBtn.addEventListener('click', () => {
-      body.style.backgroundColor = 'gray';
-      counter.style.color = 'black';
-      clearInterval(timer);
-      seconds = 0;
-      updateCounter();
-    });
-
-    // запуск начального состояния
-    updateCounter();
-  </script>
+  <script src="js.js"></script> 
 </body>
 </html>
-
